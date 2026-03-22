@@ -1,0 +1,65 @@
+baseURL: "https://indra111.github.io/marketing-blog/"
+languageCode: ko
+title: "마케터의 전환율 일기"
+theme: PaperMod
+
+paginate: 10
+
+params:
+  env: production
+  author: "마케터"
+  description: "이커머스 마케터의 전환율 최적화 실험 기록. 쇼핑몰 운영하면서 겪은 삽질과 성공 이야기."
+  defaultTheme: auto
+  ShowShareButtons: true
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: false
+  comments: true
+
+  homeInfoParams:
+    Title: "안녕하세요"
+    Content: "이커머스 쇼핑몰을 운영하면서 전환율 올리려고 삽질한 이야기들을 기록합니다. 팝업, 배너, 랜딩페이지, A/B 테스트 등 온사이트 마케팅에 관심 있는 분들과 경험을 나누고 싶어요."
+
+  socialIcons:
+    - name: rss
+      url: "index.xml"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: search
+      name: 검색
+      url: /search/
+      weight: 10
+    - identifier: tags
+      name: 태그
+      url: /tags/
+      weight: 20
+    - identifier: archives
+      name: 아카이브
+      url: /archives/
+      weight: 30
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
