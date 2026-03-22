@@ -2,6 +2,7 @@ baseURL: "https://indra111.github.io/marketing-blog/"
 languageCode: ko
 title: "마케터의 전환율 일기"
 theme: PaperMod
+enableRobotsTXT: true
 
 paginate: 10
 

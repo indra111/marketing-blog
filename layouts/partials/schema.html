@@ -1,0 +1,69 @@
+{{- if .IsPage }}
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ .Description | default .Summary | plainify | jsonify }},
+  "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ site.Params.author | default "마케터" | jsonify }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.Title | jsonify }},
+    "url": {{ site.BaseURL | jsonify }}
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ .Permalink | jsonify }}
+  },
+  "wordCount": {{ .WordCount }},
+  "inLanguage": "ko"
+  {{- if .Params.tags }},
+  "keywords": {{ .Params.tags | jsonify }}
+  {{- end }}
+}
+</script>
+
+{{- if .Params.faq }}
+<!-- FAQ Schema (AEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $i, $item := .Params.faq }}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Question",
+      "name": {{ $item.q | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $item.a | jsonify }}
+      }
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
+
+{{- end }}
+
+{{- if .IsHome }}
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.Title | jsonify }},
+  "url": {{ site.BaseURL | jsonify }},
+  "description": {{ site.Params.description | jsonify }},
+  "inLanguage": "ko"
+}
+</script>
+{{- end }}
